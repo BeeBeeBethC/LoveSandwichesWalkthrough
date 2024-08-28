@@ -75,26 +75,34 @@ def validate_data(values):
 
     return True
 
+# def update_sales_worksheet(data):
+   # """
+   # update sales worksheet, add new row with the list data provided.
+   # the sales word links to the page of the spreadsheet you wish to access
+   # """
+   # print("UPDATING SALES WORKSHEET . . . \n")
+   # sales_worksheet = SHEET.worksheet("sales")
+   # sales_worksheet.append_row(data)
+   # print("SALES WORKSHEET UPDATED SUCCESSFULLY.\n")
 
-def update_sales_worksheet(data):
-    """
-    update sales worksheet, add new row with the list data provided.
-    the sales word links to the page of the spreadsheet you wish to access
-    """
-    print("UPDATING SALES WORKSHEET . . . \n")
-    sales_worksheet = SHEET.worksheet("sales")
-    sales_worksheet.append_row(data)
-    print("SALES WORKSHEET UPDATED SUCCESSFULLY.\n")
+# def update_surplus_worksheet(data):
+    # """
+    # update surplus worksheet, add new row with the list data provided.
+    # the surplus word links to the page of the spreadsheet you wish to access
+    # """
+    # print("UPDATING SURPLUS WORKSHEET . . . \n")
+    # surplus_worksheet = SHEET.worksheet("surplus")
+    # surplus_worksheet.append_row(data)
+    # print("SURPLUS WORKSHEET UPDATED SUCCESSFULLY.\n")
 
-def update_surplus_worksheet(data):
+def update_worksheet(data, worksheet):
     """
-    update surplus worksheet, add new row with the list data provided.
-    the surplus word links to the page of the spreadsheet you wish to access
+    refactoring two functions into one function
     """
-    print("UPDATING SURPLUS WORKSHEET . . . \n")
-    surplus_worksheet = SHEET.worksheet("surplus")
-    surplus_worksheet.append_row(data)
-    print("SURPLUS WORKSHEET UPDATED SUCCESSFULLY.\n")
+    print(f"UPDATING {worksheet} WORKSHEET . . . \n")
+    worksheet_to_update = SHEET.worksheet(worksheet)
+    worksheet_to_update.append_row(data)
+    print(f"{worksheet} worksheet updated successfully\n")
 
 def calculate_surplus_data(sales_row):
     """
@@ -125,9 +133,9 @@ def main():
     """
     data = get_sales_data()
     sales_data = [int(num) for num in data]
-    update_sales_worksheet(sales_data)
+    update_worksheet(sales_data, "sales")
     new_surplus_data = calculate_surplus_data(sales_data)
-    update_surplus_worksheet(new_surplus_data)
+    update_worksheet(new_surplus_data, "surplus")
 
 print("WELCOME TO LOVE SANDWICHES DATA AUTOMATION")
 main()
