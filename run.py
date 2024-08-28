@@ -62,7 +62,6 @@ def validate_data(values):
     6 values have been provided and gives an error message 
     should 6 values not be found.
     """
-    print(values)
     try:
         [int(value) for value in values]
         if len(values) != 6:
@@ -76,5 +75,16 @@ def validate_data(values):
     return True
 
 
+def update_sales_worksheet(data):
+    """
+    update sales worksheet, add new row with the list data provided.
+    the sales word links to the page of the spreadsheet you wish to access
+    """
+    print("UPDATING SALES WORKSHEET . . . \n")
+    sales_worksheet = SHEET.worksheet("sales")
+    sales_worksheet.append_row(data)
+    print("SALES WORKSHEET UPDATED SUCCESSFULLY.\n")
 
 data = get_sales_data()
+sales_data = [int(num) for num in data]
+update_sales_worksheet(sales_data)
