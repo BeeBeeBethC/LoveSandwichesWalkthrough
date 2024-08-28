@@ -24,15 +24,29 @@ def get_sales_data():
     split turns string to a list by splitting 
     the values at the comma
     the backslash n gives an extra line of space below.
+    function logic: get_sales_data runs a while loop 
+    until the correct amount of values are fed in.
+    it changes data input to a list of data and
+    checks for errors.
+    checks for anything but integers and will throw 
+    an error and repeat the while loop until all
+    aspects run valid. 
     """
-    print("please enter sales data from the last market.")
-    print("Data should be six numbers, separated by commas.")
-    print("Example: 10, 20, 30, 40, 50, 60\n")
 
-    data_str = input("Enter your data here: ")
-   
-    sales_data = data_str.split(",")
-    validate_data(sales_data)
+    while True:
+        print("please enter sales data from the last market.")
+        print("Data should be six numbers, separated by commas.")
+        print("Example: 10, 20, 30, 40, 50, 60\n")
+
+        data_str = input("Enter your data here: ")
+    
+        sales_data = data_str.split(",")
+        
+
+        if validate_data(sales_data):
+            print("DATA IS VALID!")
+            break
+    return sales_data
 
 
 def validate_data(values):
@@ -57,7 +71,10 @@ def validate_data(values):
             )
     except ValueError as e:
         print(f"Invalid data: {e}, please try again.\n")
+        return False
+
+    return True
 
 
 
-get_sales_data()
+data = get_sales_data()
